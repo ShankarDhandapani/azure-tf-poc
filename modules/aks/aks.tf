@@ -1,14 +1,15 @@
 # AKS cluster
 resource "azurerm_kubernetes_cluster" "k8s" {
-  location                   = data.azurerm_resource_group.resource_group.location
+  location                   = azurerm_resource_group.resource_group.location
   name                       = var.cluster_name
-  resource_group_name        = var.resource_group_name
+  resource_group_name        = azurerm_resource_group.resource_group.name
   dns_prefix_private_cluster = var.cluster_name
   private_cluster_enabled    = true
   private_dns_zone_id        = azurerm_private_dns_zone.private_dns_zone.id
   sku_tier                   = "Standard"
   automatic_channel_upgrade  = "stable"
   tags                       = var.tags
+
 
   azure_policy_enabled             = true
   http_application_routing_enabled = true
@@ -60,6 +61,9 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     network_plugin      = "azure"
     network_plugin_mode = "overlay"
     network_policy      = "azure"
+
+    service_cidr   = var.service_cidr
+    dns_service_ip = var.dns_service_ip
   }
 
   oms_agent {

@@ -19,7 +19,7 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "shankar-apollo-poc"
+    resource_group_name  = "apollo-tf-config"
     storage_account_name = "apollotfstate"
     container_name       = "tfstate"
     key                  = "akspoc.tfstate"

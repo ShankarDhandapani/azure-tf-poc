@@ -1,6 +1,6 @@
 # Private DNS Zone 
 resource "azurerm_private_dns_zone" "private_dns_zone" {
-  name                = "privatelink.${data.azurerm_resource_group.resource_group.location}.azmk8s.io"
+  name                = "privatelink.${azurerm_resource_group.resource_group.location}.azmk8s.io"
   resource_group_name = var.resource_group_name
 }
 

@@ -13,19 +13,46 @@ variable "aks_admin_group_object_ids" {
   description = "List of group object IDs which receive K8s administrative access."
 }
 
+variable "service_cidr" {
+  description = "AKS Service CIDR"
+  type        = string
+}
+
+variable "dns_service_ip" {
+  description = "AKS DNS service ip"
+  type        = string
+}
+
 variable "resource_group_name" {
   type        = string
   description = "Resource group name"
 }
 
-variable "cluster_subnet_name" {
-  type    = string
-  default = "Name of the subnet where AKS will be deployed."
+variable "existing_resource_group_name" {
+  type        = string
+  description = "Existing Resource group name"
+}
+
+variable "resource_group_location" {
+  type        = string
+  description = "Location for New resource group to be deployed."
 }
 
 variable "virtual_network_name" {
-  type    = string
-  default = "Name of the Virtual Network."
+  description = "Name of the Azure Virtual Network"
+  type        = string
+}
+
+variable "virtual_network_cidr" {
+  description = "Address space for the Virtual Network"
+  type        = list(string)
+}
+
+variable "subnets" {
+  description = "A map of subnets to create within the Virtual Network"
+  type = map(object({
+    address_prefix = string
+  }))
 }
 
 variable "identity_name" {

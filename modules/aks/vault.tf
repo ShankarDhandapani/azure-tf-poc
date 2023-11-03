@@ -1,8 +1,8 @@
 # https://learn.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/disk_encryption_set
 resource "azurerm_key_vault" "aks" {
-  name                        = var.cluster_name
-  location                    = data.azurerm_resource_group.resource_group.location
+  name                        = join("-", [var.cluster_name, "vault"])
+  location                    = azurerm_resource_group.resource_group.location
   resource_group_name         = var.resource_group_name
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   sku_name                    = "premium"
@@ -26,7 +26,8 @@ resource "azurerm_key_vault_access_policy" "aks_user_policy" {
     "Recover",
     "Backup",
     "Restore",
-    "GetRotationPolicy"
+    "GetRotationPolicy",
+    "SetRotationPolicy"
   ]
 }
 
@@ -50,7 +51,7 @@ resource "azurerm_key_vault_key" "aks" {
 resource "azurerm_disk_encryption_set" "aks" {
   name                = join("-", [var.cluster_name, "des"])
   resource_group_name = var.resource_group_name
-  location            = data.azurerm_resource_group.resource_group.location
+  location            = azurerm_resource_group.resource_group.location
   key_vault_key_id    = azurerm_key_vault_key.aks.id
   tags                = var.tags
 

@@ -8,9 +8,40 @@ variable "tags" {
   description = "Tags for all resources"
 }
 
+variable "service_cidr" {
+  description = "AKS Service CIDR"
+  type        = string
+}
+
+variable "dns_service_ip" {
+  description = "AKs DNS service ip"
+  type        = string
+}
+
 variable "resource_group_name" {
   type        = string
-  description = "Existing resource group that will contain resources to be deployed."
+  description = "New resource group that will contain resources to be deployed."
+}
+
+variable "virtual_network_name" {
+  description = "Name of the Azure Virtual Network"
+  type        = string
+}
+
+variable "virtual_network_cidr" {
+  description = "Address space for the Virtual Network"
+  type        = list(string)
+}
+
+variable "subnets" {
+  description = "A map of subnets to create within the Virtual Network"
+  type = map(object({
+    address_prefix = string
+  }))
+}
+variable "resource_group_location" {
+  type        = string
+  description = "Location for New resource group to be deployed."
 }
 
 variable "aks_admin_group_object_ids" {
@@ -31,16 +62,6 @@ variable "node_count_min" {
 variable "node_count_max" {
   type        = number
   description = "The maximum quantity of nodes for the default node pool."
-}
-
-variable "cluster_subnet_name" {
-  type    = string
-  default = "Name of the subnet where AKS will be deployed."
-}
-
-variable "virtual_network_name" {
-  type    = string
-  default = "Name of the Virtual Network."
 }
 
 variable "username" {
