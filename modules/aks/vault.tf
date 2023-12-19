@@ -27,7 +27,9 @@ resource "azurerm_key_vault_access_policy" "aks_user_policy" {
     "Backup",
     "Restore",
     "GetRotationPolicy",
-    "SetRotationPolicy"
+    "SetRotationPolicy",
+    "WrapKey",
+    "UnwrapKey",
   ]
 }
 
@@ -60,15 +62,15 @@ resource "azurerm_disk_encryption_set" "aks" {
   }
 }
 
-resource "azurerm_key_vault_access_policy" "aks_encryption_policy" {
-  key_vault_id = azurerm_key_vault.aks.id
-  tenant_id    = azurerm_disk_encryption_set.aks.identity.0.tenant_id
-  object_id    = azurerm_disk_encryption_set.aks.identity.0.principal_id
+# resource "azurerm_key_vault_access_policy" "aks_encryption_policy" {
+#   key_vault_id = azurerm_key_vault.aks.id
+#   tenant_id    = azurerm_disk_encryption_set.aks.identity.0.tenant_id
+#   object_id    = azurerm_disk_encryption_set.aks.identity.0.principal_id
 
-  key_permissions = [
-    "Get",
-    "WrapKey",
-    "UnwrapKey",
-    "GetRotationPolicy"
-  ]
-}
+#   key_permissions = [
+#     "Get",
+#     "WrapKey",
+#     "UnwrapKey",
+#     "GetRotationPolicy"
+#   ]
+# }
