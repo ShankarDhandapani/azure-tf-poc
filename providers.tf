@@ -19,8 +19,8 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "apollo-tf-config"
-    storage_account_name = "apollotfstate"
+    resource_group_name  = "tfconfig"
+    storage_account_name = "shankarapollopoctfstate"
     container_name       = "tfstate"
     key                  = "akspoc.tfstate"
     subscription_id      = "145ccdc1-6c51-4e45-a04e-21bdea03d170"
