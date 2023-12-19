@@ -19,4 +19,6 @@ module "aks" {
   subnets                    = var.subnets
   ssh_private_key_base64     = var.ssh_private_key_base64
   git_repo_url               = var.git_repo_url
+  bastion_password           = var.bastion_password
+  bastion_username           = var.bastion_username
 }

@@ -89,3 +89,14 @@ variable "ssh_private_key_base64" {
   type        = string
   sensitive   = true
 }
+
+variable "bastion_username" {
+  type        = string
+  description = "Bastion Username"
+}
+
+variable "bastion_password" {
+  type        = string
+  description = "Bastion password"
+}
+

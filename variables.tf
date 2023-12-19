@@ -100,3 +100,13 @@ variable "git_repo_url" {
   type        = string
   description = "Name of user-assigned identity for AKS cluster."
 }
+
+variable "bastion_username" {
+  type        = string
+  description = "Bastion Username"
+}
+
+variable "bastion_password" {
+  type        = string
+  description = "Bastion password"
+}
