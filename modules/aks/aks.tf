@@ -45,7 +45,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
   # https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
   key_vault_secrets_provider {
-    secret_rotation_enabled = true
+    secret_rotation_enabled = false
   }
 
   linux_profile {
