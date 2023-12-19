@@ -22,9 +22,10 @@ resource "azurerm_linux_virtual_machine" "bastion" {
   name                = "bastion-vm"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
-  size                = "Standard_F2"
+  size                = "standard_b2s"
   admin_username      = var.bastion_username
   admin_password      = var.bastion_password
+  disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.bation_nic.id,
   ]
