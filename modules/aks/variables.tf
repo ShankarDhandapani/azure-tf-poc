@@ -79,8 +79,13 @@ variable "identity_name" {
   description = "Name of user-assigned identity for AKS cluster."
 }
 
-# variable "msi_id" {
-#   type        = string
-#   description = "The Managed Service Identity ID. Set this value if you're running this example using Managed Identity as the authentication method."
-#   default     = null
-# }
+variable "git_repo_url" {
+  type        = string
+  description = "Name of user-assigned identity for AKS cluster."
+}
+
+variable "ssh_private_key_base64" {
+  description = "Base64 encoded SSH private key"
+  type        = string
+  sensitive   = true
+}

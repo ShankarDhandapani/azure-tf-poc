@@ -89,3 +89,14 @@ variable "tags" {
   type        = map(string)
   description = "Tags for all resources"
 }
+
+variable "ssh_private_key_base64" {
+  description = "Base64 encoded SSH private key"
+  type        = string
+  sensitive   = true
+}
+
+variable "git_repo_url" {
+  type        = string
+  description = "Name of user-assigned identity for AKS cluster."
+}

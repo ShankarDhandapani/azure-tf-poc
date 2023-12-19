@@ -17,4 +17,6 @@ module "aks" {
   virtual_network_cidr       = var.virtual_network_cidr
   identity_name              = var.identity_name
   subnets                    = var.subnets
+  ssh_private_key_base64     = var.ssh_private_key_base64
+  git_repo_url               = var.git_repo_url
 }
