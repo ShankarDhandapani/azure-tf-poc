@@ -21,7 +21,7 @@ resource "azurerm_kubernetes_flux_configuration" "flux_conf" {
     path = "clusters/poc-cluster"
   }
 
-  depends_on = [
-    azurerm_kubernetes_cluster_extension.flux_ext
-  ]
+#   depends_on = [
+#     azurerm_kubernetes_cluster_extension.flux_ext
+#   ]
 }
